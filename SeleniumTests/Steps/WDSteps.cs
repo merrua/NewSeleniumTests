@@ -69,7 +69,7 @@ namespace SeleniumTests
             Thread.Sleep(1000);
 
             List<IWebElement> testData = wdLandingPage.GetGridMeetingTypeList();
-            //Assert.AreEqual(ExpectedMeetingCount, testData.Count, "We expect to see 24 meetings in the meeting type column but count does not match" + testData.Count);
+            Assert.AreEqual(ExpectedMeetingCount, testData.Count, "We expect to see 24 meetings in the meeting type column but count does not match" + testData.Count);
         }
 
         private int GetExpectedMeetingCount(string country)
@@ -115,11 +115,6 @@ namespace SeleniumTests
                 }
             }
 
-            foreach (string w in countryNames)
-            {
-                Console.WriteLine("T1 :" + w);
-            }
-
             for (int i = 0; i < countryNames.Count; i++)
             {
                 if (countryNames[i].ToLower() != "Belgium".ToLower())
@@ -138,6 +133,7 @@ namespace SeleniumTests
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("grid")));
 
             // go to next page
+            // TODO replace the waits with a JS check
             Thread.Sleep(5000);
             wdLandingPage.NextPageButton.Click();
             Thread.Sleep(5000);
